@@ -5,7 +5,7 @@ export default function Weather() {
         <div className="Weather">
             <div class="container">
         <div class="weather-app-wrapper">
-            <h1>Any Weather</h1>
+            <h1>All Weather</h1>
         <div class="weather-app">
             <form id="search-form" class="mb-3">
                 <div class="row">
