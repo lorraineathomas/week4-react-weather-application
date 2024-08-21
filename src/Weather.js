@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import "./Weather.css";
+import axios from "axios";
 
 export default function Weather() {
 
@@ -23,7 +24,7 @@ function refreshWeather(response){
 
     let dayTime = new Date(response.data.time * 1000);
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    timeElement = document.querySelector("#time");
+    let timeElement = document.querySelector("#time");
     let minutes = dayTime.getMinutes();
     if (minutes < 10) {
         minutes = `0${dayTime.getMinutes()}`;
@@ -35,7 +36,7 @@ function refreshWeather(response){
     }
 
     function searchCity(city){
-    let apiKey = "bf54175800a55e59e6c4d6461deeef12";
+    let apiKey = "AIzaSyC2wWueOzJkgsqNP4CM6bMVcUoJSpege-w";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(refreshWeather);
     }
