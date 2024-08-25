@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "./Weather.css";
 import axios from "axios";
 
@@ -14,21 +14,22 @@ export default function Weather() {
       });
     
       function refreshWeather(response) {
-        const temperatureValue = Math.round(convertTemperature(response.data.temperature.current));
-        const dayTime = new Date(response.data.time * 1000);
+        const temperatureValue = Math.round(convertTemperature(response.data.main.temperature.current));
+        const dayTime = new Date(response.data.main.time * 1000);
         const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const minutes = dayTime.getMinutes() < 10 ? `0${dayTime.getMinutes()}` : dayTime.getMinutes();
         const time = `${days[dayTime.getDay()]} ${dayTime.getHours()}:${minutes}`;
-        const speed = Math.round(response.data.wind.speed * 1.609344);
+        const speed = Math.round(response.data.main.wind.speed * 1.609344);
         setWeatherData({
-          city: response.data.city,
+          city: response.data.main.city,
           temperature: temperatureValue,
-          description: response.data.condition.description,
-          humidity: response.data.temperature.humidity,
+          description: response.data.main.condition.description,
+          humidity: response.data.main.temperature.humidity,
           windSpeed: speed,
           time: time,
-          iconUrl: response.data.condition.icon_url,
+          iconUrl: response.data.main.condition.icon_url,
         });
+        console.log(response);
       }
     
       function searchCity(city) {
